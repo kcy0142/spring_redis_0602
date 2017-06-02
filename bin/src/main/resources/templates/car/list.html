@@ -1,0 +1,95 @@
+<html> 
+ <head> 
+   <meta charset="utf-8"/> 
+   <title>Redusers Mna</title> 
+   <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css"/>
+ </head> 
+ <body> 
+ 
+ 
+ 
+   <nav class="navbar navbar-default"> 
+     <div class="container"> 
+       <div class="navbar-header"> 
+         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> 
+           <span class="sr-only">Toggle navigation</span> 
+           <span class="icon-bar"></span> 
+           <span class="icon-bar"></span> 
+           <span class="icon-bar"></span> 
+         </button> 
+         <a class="navbar-brand" href="#">Redis Test</a> 
+       </div> 
+       <div id="navbar" class="collapse navbar-collapse"> 
+         <ul class="nav navbar-nav"> 
+           <li class="active"><a href="/">Home</a></li> 
+           <li><a href="/product/list">Product List</a></li> 
+           <li><a href="/person/list">Person List</a></li> 
+           <li><a href="/cart/list">Cart List</a></li>
+         </ul> 
+       </div><!--/.nav-collapse --> 
+     </div> 
+   </nav> 
+   
+       
+    
+ <div class="container">
+	 <div>
+	 <form class="form-inline" method="post" action="/car/search">
+		<div class="form-group">
+		  
+ 				<div class="col-sm-10">
+                	<select id="make" name="make">
+					   <option value="Ferrari">Ferrari</option>
+					    <option value="Porsche">Porsche</option>
+					     <option value="Kia">Kia</option>
+					</select>
+                </div>
+                <div class="col-sm-10">
+                   <select id="color" name="color">
+					   <option value="Yellow">Yellow</option>
+					    <option value="Red">Red</option>
+					     <option value="White">White</option>
+					      <option value="Black">Black</option>
+					</select>
+							
+
+                </div>
+                
+		</div>
+		<input type="submit" class="btn btn-primary" value="Search"/>
+	</form>
+	</div>
+
+    <div th:if="${not #lists.isEmpty(car1)}">
+        <h2>Cart List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Make</th>
+                <th>Model</th>
+                 <th>color</th>
+                  <th>topSpeed</th>
+                <th>List</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="car : ${car1}">
+                <td th:text="${car.value.id}"></td>
+                <td th:text="${car.value.make}"></td>
+                <td th:text="${car.value.model}"></td>
+                 <td th:text="${car.value.color}"></td>
+                <td th:text="${car.value.topSpeed}"></td>
+                <td><a th:href="${'/car/show/' + car.value.id}">View</a> </td>
+                <td><a th:href="${'/car/edit/' + car.value.id}">Edit</a> </td>
+                <td><a th:href="${'/car/delete/' + car.value.id}">Delete</a> </td>
+            </tr>
+        </table>
+    </div> 
+    <div class="row">
+        <div class="col-sm-3">
+            <a href="/car/new">New Car</a>
+        </div>
+    </div>
+</div>
+ </body> 
+ </html> 

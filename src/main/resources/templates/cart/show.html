@@ -1,0 +1,67 @@
+<html> 
+ <head> 
+   <meta charset="utf-8"/> 
+   <title>Redis</title> 
+   <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css"/>
+ </head> 
+ <body> 
+ 
+ 
+  <nav class="navbar navbar-default"> 
+     <div class="container"> 
+       <div class="navbar-header"> 
+         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> 
+           <span class="sr-only">Toggle navigation</span> 
+           <span class="icon-bar"></span> 
+           <span class="icon-bar"></span> 
+           <span class="icon-bar"></span> 
+         </button> 
+         <a class="navbar-brand" href="#">Redis Test</a> 
+       </div> 
+       <div id="navbar" class="collapse navbar-collapse"> 
+         <ul class="nav navbar-nav"> 
+           <li class="active"><a href="/">Home</a></li> 
+           <li><a href="/product/list">Product List</a></li> 
+           <li><a href="/person/list">Person List</a></li> 
+           <li><a href="/cart/list">Cart List</a></li>
+            <li><a href="/car/list">Car List</a></li>
+         </ul> 
+       </div><!--/.nav-collapse --> 
+     </div> 
+   </nav> 
+   
+   <div class="container">
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>Show Cart</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Cart Id:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${cart.userId}">User Id</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">productId:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${cart.productId}">productId</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Qty:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${cart.qty}">Price</p>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+    </body> 
+ </html> 

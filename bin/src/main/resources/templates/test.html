@@ -1,0 +1,56 @@
+HMSET cars:1 make Ferrari model F458 color Yellow topSpeed 200
+HMSET cars:2 make Ferrari model F500 color Red topSpeed 300
+HMSET cars:3 make Ferrari model F600 color Yellow topSpeed 400
+HMSET cars:4 make Porsche model P100 color Red topSpeed 100
+HMSET cars:5 make Porsche model P200 color Red topSpeed 200
+HMSET cars:6 make Kia model K3 color Black topSpeed 400
+HMSET cars:7 make Kia model K3 color Black topSpeed 500
+
+
+sadd make:Ferrari 1 2 3 
+sadd make:Porsche 4 5
+sadd make:Kia 6 7
+sadd color:Yellow 1 3
+sadd color:Red 2 4 5
+sadd color:Black 6 7
+
+sinterstore tmpkey1 make:Ferrari color:Red
+
+smembers tmpkey1
+
+
+sinterstore test1 car_make:Ferrari car_color:Red
+
+127.0.0.1:6379> SADD mycolor1 R G B
+(integer) 3
+127.0.0.1:6379> SADD mycolor2 G B Y
+(integer) 3
+127.0.0.1:6379> SINTERSTORE dest_key mycolor1 mycolor2
+(integer) 2
+127.0.0.1:6379> SMEMBERS dest_key
+1) "G"
+2) "B"
+
+
+|Id|Departure Time|Airline|Departure City|Arrival City| 
+|1|03/23/2013 1:30 pm|Virgin America|Los Angeles|New York| 
+|2|03/23/2013 1:45 pm|Virgin America|San Francisco|New York|
+|3|03/23/2013 1:45 pm|American Airlines|San Francisco|New York| 
+|4|03/23/2013 1:50 pm|American Airlines|Los Angeles|Boston|
+|5|03/23/2013 2:45 pm|Southwest|San Francisco|New York|
+|6|03/23/2013 3:30 pm|Southwest|San Francisco|New York|
+
+ 
+
+
+HMSET flights:1 departure_time 201705271340 airline F458 arrival_city seoul 
+HMSET flights:2 departure_time 201705281440 airline F558 arrival_city kwangju
+HMSET flights:3 departure_time 201705281340 airline F458 arrival_city jeju
+HMSET flights:4 departure_time 201705281340 airline F558 arrival_city kwangju
+HMSET flights:5 departure_time 201705281440 airline F448 arrival_city jeju
+
+smembers departure_time:201705281340:flights
+
+sinterstore tmpkey1 departure_time:201705281340
+
+smembers departure_time:201705281340

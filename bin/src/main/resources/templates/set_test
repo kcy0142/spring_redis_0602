@@ -1,0 +1,57 @@
+
+
+1 package org.nivance.redisexam; 
+2 
+ 
+3 import lombok.extern.slf4j.Slf4j; 
+4 
+ 
+5 import org.springframework.boot.SpringApplication; 
+6 import org.springframework.context.ApplicationContext; 
+7 import org.springframework.data.redis.core.StringRedisTemplate; 
+8 import org.springframework.stereotype.Service; 
+9 
+ 
+10 @Slf4j 
+11 @Service 
+12 public class SetTest extends RedisCommon { 
+13 
+ 
+14 	public static void main(String[] args) throws InterruptedException { 
+15 		log.info("-----------Starting Redis Set testing-----------"); 
+16 		ApplicationContext ctx = SpringApplication.run(SetTest.class, args); 
+17 		StringRedisTemplate st = ctx.getBean(StringRedisTemplate.class); 
+18 		String key = "SetKey"; 
+19 		String destKey = "DestKey"; 
+20 		String[] values = new String[]{"value1","value2","value3","value4","value5","value6","value7"}; 
+21 		log.info("SetKey add [" + st.opsForSet().add(key, values ) + "] values "); 
+22 		log.info("SetKey's member " + st.opsForSet().members(key)); 
+23 		String value5 = "value5"; 
+24 		log.info(value5 + " is member of SetKey's : " + st.opsForSet().isMember(key, value5)); 
+25 		log.info("SetKey's randomMember [" + st.opsForSet().randomMember(key) + "]"); 
+26 		log.info("SetKey's size: " + st.opsForSet().size(key)); 
+27 		 
+28 		String[] subValues = new String[]{"value1","value2","value3"}; 
+29 		log.info("SetKey remove " + st.opsForSet().remove(key, subValues) + " members"); 
+30 		log.info("SetKey's size: " + st.opsForSet().size(key)); 
+31 		 
+32 		log.info("SetKey move to DestKey: " + st.opsForSet().move(key, value5, destKey)); 
+33 		log.info("SetKey's size: " + st.opsForSet().size(key)); 
+34 		log.info("DestKey size: " + st.opsForSet().size(destKey)); 
+35 		 
+36 		String popValue = st.opsForSet().pop(key); 
+37 		log.info("SetKey move to DestKey: " + st.opsForSet().move(key, popValue, destKey)); 
+38 		log.info("SetKey's size: " + st.opsForSet().size(key)); 
+39 		log.info("DestKey size: " + st.opsForSet().size(destKey)); 
+40 		 
+41 		//st.opsForSet().difference(key, destKey); 
+42 		//st.opsForSet().differenceAndStore(key, otherKeys, destKey); 
+43 		 
+44 		//st.opsForSet().intersect(key, destKey); 
+45 		//st.opsForSet().intersectAndStore(key, otherKey, destKey); 
+46 	} 
+47 
+ 
+48 } 
+49 
+ 
