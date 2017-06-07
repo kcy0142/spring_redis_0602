@@ -19,7 +19,8 @@ public class RedisMessageListenerIntegrationTest {
   public void setMessagePublisher(MessagePublisher redisMessagePublisher) { 
     this.redisMessagePublisher = redisMessagePublisher;
   } 
-  //  @Autowired  //  private MessagePublisherImpl redisMessagePublisher;
+  //  @Autowired
+  //  private MessagePublisherImpl redisMessagePublisher;
     @Test  
   public void testOnMessage() throws Exception {   
     String message = "Message test" + UUID.randomUUID();    
